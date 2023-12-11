@@ -8,9 +8,9 @@ function App() {
       lg: `"nav nav" "aside main"`}}>
       <GridItem area={'nav'}><NavBar /></GridItem>
       <Show above='lg'>
-        <GridItem bg={'black'} area={'aside'}>Aside</GridItem>
+        <GridItem area={'aside'}>Aside</GridItem>
       </Show>
-      <GridItem bg={'red'} area={'main'}>Main</GridItem>
+      <GridItem area={'main'}>Main</GridItem>
     </Grid>
   ) 
   
