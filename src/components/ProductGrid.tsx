@@ -1,22 +1,8 @@
-import { useEffect, useState } from "react"
-import apiClient from "../services/api-client";
 import { Text } from "@chakra-ui/react";
-
-interface Product {
-    id: number;
-    title: string;
-}
-
+import useProducts from "./hooks/useProducts";
 
 export const ProductGrid = () => {
-const [products, setProducts] = useState<Product[]>([]);
-const [error, setError] = useState('');
-
-useEffect(() => {
-    apiClient.get<Product[]>('/products')
-    .then( res => setProducts(res.data))
-    .catch(err => setError(err.message))
-})
+  const {products, error} = useProducts();
 
   return (
     <>
