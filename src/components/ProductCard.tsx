@@ -1,11 +1,13 @@
-import { Card, CardBody, Flex, Heading, Img } from "@chakra-ui/react";
+import { Card, CardBody, Text, Heading, Img, Button, Link } from "@chakra-ui/react";
 import { Product } from "./hooks/useProducts";
+import { useState } from "react";
 
 interface Props {
   product: Product;
 }
 
 export const ProductCard = ({ product }: Props) => {
+    const[setup, isSetup] = useState(false);
   return (
     <Card
       display="flex"
@@ -20,7 +22,11 @@ export const ProductCard = ({ product }: Props) => {
         borderRadius="6px"
       />
       <CardBody>
-        <Heading size="2rem">{product.title}</Heading>
+        <Heading size="3rem">{product.title}</Heading>
+        <Text>
+            {setup ?  product.description : product.description.slice(0, 36) + '...'}
+            <Button padding={0.5} size={'sm'} variant={'Link'} onClick={() => isSetup(!setup)}>{setup ? 'Less' : 'More'}</Button>
+            </Text>
       </CardBody>
     </Card>
   );
