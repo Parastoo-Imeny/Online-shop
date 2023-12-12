@@ -1,6 +1,7 @@
-import { Card, CardBody, Text, Heading, Img, Button, Link } from "@chakra-ui/react";
+import { Card, CardBody, Text, Heading, Img, Button, HStack } from "@chakra-ui/react";
 import { Product } from "./hooks/useProducts";
 import { useState } from "react";
+import { CriticScore } from "./CriticScore";
 
 interface Props {
   product: Product;
@@ -27,6 +28,9 @@ export const ProductCard = ({ product }: Props) => {
             {setup ?  product.description : product.description.slice(0, 36) + '...'}
             <Button padding={0.5} size={'sm'} variant={'Link'} onClick={() => isSetup(!setup)}>{setup ? 'Less' : 'More'}</Button>
             </Text>
+            <HStack display='flex' justifyContent='end' marginY={6}>
+                <CriticScore rating={product.rating} />
+            </HStack>
       </CardBody>
     </Card>
   );
