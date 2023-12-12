@@ -10,7 +10,7 @@ interface Props {
 export const ProductCard = ({ product }: Props) => {
     const[setup, isSetup] = useState(false);
   return (
-    <Card align="center">
+    <Card display="flex" align="center">
       <Img
         src={product.image}
         width="18rem"
