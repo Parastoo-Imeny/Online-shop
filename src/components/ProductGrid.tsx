@@ -5,7 +5,7 @@ import { ProductCardSkeleton } from "./ProductCardSkeleton";
 import { ProductCardContainer } from "./ProductCardContainer";
 
 export const ProductGrid = () => {
-  const { products, error, isLoading } = useProducts();
+  const { data, error, isLoading } = useProducts();
   const skeleton= [1,2,3,4,5,6,7,8]
 
   return (
@@ -18,11 +18,11 @@ export const ProductGrid = () => {
         gap={0}
         justifyItems='center'
       >
-        {isLoading && (skeleton.map( () => <ProductCardContainer>
+        {isLoading && (skeleton.map( (s) => <ProductCardContainer key={s}>
           <ProductCardSkeleton />
         </ProductCardContainer> ))}
-        {products.map((product) => (
-          <ProductCardContainer>
+        {data.map((product) => (
+          <ProductCardContainer key={product.id}>
             <ProductCard key={product.id} product={product} />
           </ProductCardContainer>
         ))}
