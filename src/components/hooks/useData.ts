@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 
 
-const useData = <T>(endpoint: string) => {
+const useData = <T>(endpoint: string, deps?: any[]) => {
     const [data, setData] = useState<T[]>([]);
     const [error, setError] = useState("");
     const [isLoading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const useData = <T>(endpoint: string) => {
         });
   
       return () => controller.abort();
-    }, []);
+    }, deps ? [...deps] : []);
   
     return { data, error, isLoading };
 }

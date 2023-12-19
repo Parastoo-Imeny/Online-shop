@@ -4,10 +4,14 @@ import { ProductCard } from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductCardSkeleton";
 import { ProductCardContainer } from "./ProductCardContainer";
 
-export const ProductGrid = () => {
-  const { data, error, isLoading } = useProducts();
-  const skeleton= [1,2,3,4,5,6,7,8]
+interface Props {
+  selectedCategory: string | null;
+}
 
+export const ProductGrid = ({ selectedCategory }: Props) => {
+  const { data, error, isLoading } = useProducts(selectedCategory);
+  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
+ 
   return (
     <>
       {error && <Text>{error}</Text>}
@@ -16,11 +20,14 @@ export const ProductGrid = () => {
         padding={3}
         spacing={10}
         gap={0}
-        justifyItems='center'
+        justifyItems="center"
       >
-        {isLoading && (skeleton.map( (s) => <ProductCardContainer key={s}>
-          <ProductCardSkeleton />
-        </ProductCardContainer> ))}
+        {isLoading &&
+          skeleton.map((s) => (
+            <ProductCardContainer key={s}>
+              <ProductCardSkeleton />
+            </ProductCardContainer>
+          ))}
         {data.map((product) => (
           <ProductCardContainer key={product.id}>
             <ProductCard key={product.id} product={product} />
