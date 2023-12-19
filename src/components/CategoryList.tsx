@@ -3,9 +3,10 @@ import useCategories from "./hooks/useCategories";
 
 interface Props {
   onSelectCategory: (category: string) => void;
+  selectedCategory: string | null;
 }
 
-export const CategoryList = ({onSelectCategory}:Props) => {
+export const CategoryList = ({selectedCategory, onSelectCategory}:Props) => {
   const { data, error, isLoading } = useCategories();
 
   if (error) return null;
@@ -15,7 +16,7 @@ export const CategoryList = ({onSelectCategory}:Props) => {
     <List marginY="1.5rem" paddingLeft="2rem">
       {data.map((category) => (
         <ListItem>
-          <Button onClick={() => onSelectCategory(category) } variant="Link" key={category}>
+          <Button fontWeight={category === selectedCategory ? 'bold' : 'normal'} onClick={() => onSelectCategory(category) } variant="Link" key={category}>
             {category}
           </Button>
         </ListItem>

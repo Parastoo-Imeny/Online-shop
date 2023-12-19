@@ -12,7 +12,7 @@ function App() {
       lg: `"nav nav" "aside main"`}}>
       <GridItem area={'nav'}><NavBar /></GridItem>
       <Show above='lg'>
-        <GridItem area={'aside'}><CategoryList onSelectCategory={(category) => setSelectedCategory(category)} /></GridItem>
+        <GridItem area={'aside'}><CategoryList selectedCategory={selectedCategory} onSelectCategory={(category) => setSelectedCategory(category)} /></GridItem>
       </Show>
       <GridItem area={'main'}><ProductGrid selectedCategory={selectedCategory} /></GridItem>
     </Grid>
