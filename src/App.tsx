@@ -3,6 +3,7 @@ import { NavBar } from './components/NavBar';
 import { ProductGrid } from './components/ProductGrid';
 import { CategoryList } from './components/CategoryList';
 import { useState } from 'react';
+import { CategorySelector } from './components/CategorySelector';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -14,7 +15,9 @@ function App() {
       <Show above='lg'>
         <GridItem area={'aside'}><CategoryList selectedCategory={selectedCategory} onSelectCategory={(category) => setSelectedCategory(category)} /></GridItem>
       </Show>
-      <GridItem area={'main'}><ProductGrid selectedCategory={selectedCategory} /></GridItem>
+      <GridItem area={'main'}>
+        <CategorySelector />
+        <ProductGrid selectedCategory={selectedCategory} /></GridItem>
     </Grid>
   ) 
   

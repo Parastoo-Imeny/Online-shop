@@ -17,7 +17,7 @@ export const ProductGrid = ({ selectedCategory }: Props) => {
       {error && <Text>{error}</Text>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        padding={3}
+        padding={0}
         spacing={10}
         gap={0}
         justifyItems="center"
