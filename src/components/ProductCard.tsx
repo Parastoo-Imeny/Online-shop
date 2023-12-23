@@ -35,7 +35,8 @@ export const ProductCard = ({ product }: Props) => {
             {setup ? "Less" : "More"}
           </Button>
         </Text>
-        <HStack display="flex" justifyContent="end" marginY={6}>
+        <HStack display="flex" justifyContent='space-between'  marginY={6}>
+          <Text>${product.price}</Text>
           <CriticScore rating={product.rating} />
         </HStack>
       </CardBody>

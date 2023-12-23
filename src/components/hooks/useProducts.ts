@@ -12,12 +12,13 @@ export interface Product {
   image: string;
   description: string;
   rating: Rating;
+  price: string;
 }
 
 
 const useProducts = (productQuery: ProductQuery) =>
   useData<Product>(
-    productQuery.category ? `/products/category/${productQuery.category}` : productQuery.selector ? `/products/category/${productQuery.selector}` : "/products",
+    productQuery.category ? `/products/category/${productQuery.category}` : productQuery.selector ? `/products/category/${productQuery.selector}` : productQuery.sortOrder ? `/products?sort=${productQuery.sortOrder}` : "/products",
     [productQuery]
   );
 
