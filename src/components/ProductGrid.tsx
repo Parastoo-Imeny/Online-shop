@@ -3,14 +3,14 @@ import useProducts from "./hooks/useProducts";
 import { ProductCard } from "./ProductCard";
 import { ProductCardSkeleton } from "./ProductCardSkeleton";
 import { ProductCardContainer } from "./ProductCardContainer";
+import { ProductQuery } from "../App";
 
 interface Props {
-  selectedCategory: string | null;
-  categorySelector: string | null;
+  productQuery: ProductQuery;
 }
 
-export const ProductGrid = ({ selectedCategory, categorySelector }: Props) => {
-  const { data, error, isLoading } = useProducts(selectedCategory, categorySelector);
+export const ProductGrid = ({ productQuery }: Props) => {
+  const { data, error, isLoading } = useProducts(productQuery);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
  
   return (

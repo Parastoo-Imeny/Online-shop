@@ -1,3 +1,4 @@
+import { ProductQuery } from "../../App";
 import useData from "./useData";
 
 export interface Rating {
@@ -14,10 +15,10 @@ export interface Product {
 }
 
 
-const useProducts = (selectedCategory : string | null, categorySelector: string | null ) =>
+const useProducts = (productQuery: ProductQuery) =>
   useData<Product>(
-    selectedCategory ? `/products/category/${selectedCategory}` : categorySelector ? `/products/category/${categorySelector}` : "/products",
-    [selectedCategory, categorySelector]
+    productQuery.category ? `/products/category/${productQuery.category}` : productQuery.selector ? `/products/category/${productQuery.selector}` : "/products",
+    [productQuery]
   );
 
 export default useProducts;
