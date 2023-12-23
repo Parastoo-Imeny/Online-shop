@@ -5,6 +5,7 @@ import { CategoryList } from "./components/CategoryList";
 import { useState } from "react";
 import { CategorySelector } from "./components/CategorySelector";
 import { SortSelector } from "./components/SortSelector";
+import { ProductHeading } from "./components/ProductHeading";
 
 export interface ProductQuery {
   category: string | null;
@@ -39,17 +40,20 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"}>
-        <Flex padding={4} marginBottom={5}>
-          <Box marginRight={5}>
-            <CategorySelector
-              categorySelector={productQuery.selector}
-              onSelect={(category) =>
-                setProductQuery({ ...productQuery, selector: category })
-              }
-            />
-          </Box>
-          <SortSelector sortSelector={productQuery.sortOrder} onSelectSortOrder={(sortOrder) => setProductQuery({...productQuery, sortOrder}) } />
-        </Flex>
+        <Box padding={4}>
+          <ProductHeading productQuery={productQuery} />
+          <Flex marginBottom={5}>
+            <Box marginRight={5}>
+              <CategorySelector
+                categorySelector={productQuery.selector}
+                onSelect={(category) =>
+                  setProductQuery({ ...productQuery, selector: category })
+                }
+              />
+            </Box>
+            <SortSelector sortSelector={productQuery.sortOrder} onSelectSortOrder={(sortOrder) => setProductQuery({...productQuery, sortOrder}) } />
+          </Flex>
+        </Box>
         <ProductGrid productQuery={productQuery} />
       </GridItem>
     </Grid>
