@@ -6,10 +6,11 @@ import { ProductCardContainer } from "./ProductCardContainer";
 
 interface Props {
   selectedCategory: string | null;
+  categorySelector: string | null;
 }
 
-export const ProductGrid = ({ selectedCategory }: Props) => {
-  const { data, error, isLoading } = useProducts(selectedCategory);
+export const ProductGrid = ({ selectedCategory, categorySelector }: Props) => {
+  const { data, error, isLoading } = useProducts(selectedCategory, categorySelector);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
  
   return (

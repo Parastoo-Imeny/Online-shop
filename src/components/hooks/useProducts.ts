@@ -13,10 +13,11 @@ export interface Product {
   rating: Rating;
 }
 
-const useProducts = (selectedCategory: string | null) =>
+
+const useProducts = (selectedCategory : string | null, categorySelector: string | null ) =>
   useData<Product>(
-    selectedCategory ? `/products/category/${selectedCategory}` : "/products",
-    [selectedCategory]
+    selectedCategory ? `/products/category/${selectedCategory}` : categorySelector ? `/products/category/${categorySelector}` : "/products",
+    [selectedCategory, categorySelector]
   );
 
 export default useProducts;

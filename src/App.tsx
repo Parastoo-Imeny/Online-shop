@@ -7,6 +7,9 @@ import { CategorySelector } from './components/CategorySelector';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [categorySelector, setCategorySelector] = useState<string | null>(null);
+
+
   return(
     <Grid templateAreas={{
       base: `"nav" "main"`,
@@ -16,8 +19,8 @@ function App() {
         <GridItem area={'aside'}><CategoryList selectedCategory={selectedCategory} onSelectCategory={(category) => setSelectedCategory(category)} /></GridItem>
       </Show>
       <GridItem area={'main'}>
-        <CategorySelector />
-        <ProductGrid selectedCategory={selectedCategory} /></GridItem>
+        <CategorySelector categorySelector={categorySelector} onSelect={(category) => setCategorySelector(category)} />
+        <ProductGrid categorySelector={categorySelector} selectedCategory={selectedCategory} /></GridItem>
     </Grid>
   ) 
   
