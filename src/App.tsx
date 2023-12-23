@@ -1,9 +1,10 @@
-import { Grid, GridItem, Show } from '@chakra-ui/react'
+import { Grid, GridItem, HStack, Show } from '@chakra-ui/react'
 import { NavBar } from './components/NavBar';
 import { ProductGrid } from './components/ProductGrid';
 import { CategoryList } from './components/CategoryList';
 import { useState } from 'react';
 import { CategorySelector } from './components/CategorySelector';
+import { SortSelector } from './components/SortSelector';
 
 export interface ProductQuery {
   category: string | null;
@@ -23,7 +24,10 @@ function App() {
         <GridItem area={'aside'}><CategoryList selectedCategory={productQuery.category} onSelectCategory={(category) => setProductQuery({...productQuery, category: category})} /></GridItem>
       </Show>
       <GridItem area={'main'}>
-        <CategorySelector categorySelector={productQuery.selector} onSelect={(category) => setProductQuery({...productQuery, selector: category})} />
+        <HStack spacing={5} padding={4} marginBottom={5}>
+          <CategorySelector categorySelector={productQuery.selector} onSelect={(category) => setProductQuery({...productQuery, selector: category})} />
+          <SortSelector />
+        </HStack>
         <ProductGrid productQuery={productQuery} /></GridItem>
     </Grid>
   ) 
