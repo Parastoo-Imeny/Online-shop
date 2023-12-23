@@ -15,7 +15,7 @@ export const CategoryList = ({selectedCategory, onSelectCategory}:Props) => {
   return (
     <List marginY="1.5rem" paddingLeft="2rem">
       {data.map((category) => (
-        <ListItem>
+        <ListItem key={category}>
           <Button fontWeight={category === selectedCategory ? 'bold' : 'normal'} onClick={() => onSelectCategory(category) } variant="Link" key={category}>
             {category}
           </Button>
