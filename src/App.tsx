@@ -10,6 +10,7 @@ export interface ProductQuery {
   category: string | null;
   selector: string | null;
   sortOrder: string;
+  searchText: string;
 }
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       }}
     >
       <GridItem area={"nav"}>
-        <NavBar />
+        <NavBar onSearch={(searchText) => setProductQuery({...productQuery, searchText}) } />
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"}>
