@@ -6,6 +6,8 @@ import { useState } from "react";
 import { CategorySelector } from "./components/CategorySelector";
 import { SortSelector } from "./components/SortSelector";
 import { ProductHeading } from "./components/ProductHeading";
+import electric from './assets/logo/electric.png'
+import jewelery from './assets/logo/jewelery.png'
 
 export interface ProductQuery {
   category: string | null;
@@ -19,6 +21,8 @@ function App() {
     {} as ProductQuery
   );
 
+  const logos = [ electric, jewelery];
+
   return (
     <Grid
       templateAreas={{
@@ -27,11 +31,16 @@ function App() {
       }}
     >
       <GridItem area={"nav"}>
-        <NavBar onSearch={(searchText) => setProductQuery({...productQuery, searchText}) } />
+        <NavBar
+          onSearch={(searchText) =>
+            setProductQuery({ ...productQuery, searchText })
+          }
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"}>
           <CategoryList
+            logos={logos}
             selectedCategory={productQuery.category}
             onSelectCategory={(category) =>
               setProductQuery({ ...productQuery, category: category })
@@ -51,7 +60,12 @@ function App() {
                 }
               />
             </Box>
-            <SortSelector sortSelector={productQuery.sortOrder} onSelectSortOrder={(sortOrder) => setProductQuery({...productQuery, sortOrder}) } />
+            <SortSelector
+              sortSelector={productQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setProductQuery({ ...productQuery, sortOrder })
+              }
+            />
           </Flex>
         </Box>
         <ProductGrid productQuery={productQuery} />
