@@ -1,5 +1,5 @@
-import useData from "./useData";
+import categories from "../../data/categories";
 
-const useCategories = () => useData<string>("/products/categories");
+const useCategories = () => ( {data: categories, isLoading: false, error: null});
 
 export default useCategories;
