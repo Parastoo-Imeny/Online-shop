@@ -1,11 +1,11 @@
-import { Box, Button, HStack, Heading, Image, List, ListItem, Spinner } from "@chakra-ui/react";
+import { Box, Button, HStack, Heading, Image, ImageProps, List, ListItem, Spinner } from "@chakra-ui/react";
 import useCategories from "./hooks/useCategories";
 
 
 interface Props {
   onSelectCategory: (category: string) => void;
   selectedCategory: string | null;
-  logos: string[];
+  logos: {[key:string]: ImageProps};
 }
 
 export const CategoryList = ({ selectedCategory, onSelectCategory, logos }: Props) => {
@@ -22,11 +22,10 @@ export const CategoryList = ({ selectedCategory, onSelectCategory, logos }: Prop
     <List>
       {data.map((category) => (
         <ListItem key={category}>
-          <HStack>
-            {logos.map((logo) => (category === logo) && <Image src={logo} />)}
+          <HStack onClick={() => onSelectCategory(category)}>
+            <Image cursor="pointer"  {...logos[category]} boxSize={9} />
             <Button
               fontWeight={category === selectedCategory ? "bold" : "normal"}
-              onClick={() => onSelectCategory(category)}
               variant="Link"
               key={category}
             >

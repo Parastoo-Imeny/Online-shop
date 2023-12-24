@@ -8,6 +8,9 @@ import { SortSelector } from "./components/SortSelector";
 import { ProductHeading } from "./components/ProductHeading";
 import electric from './assets/logo/electric.png'
 import jewelery from './assets/logo/jewelery.png'
+import men from './assets/logo/men.png'
+import women from './assets/logo/women.png'
+
 
 export interface ProductQuery {
   category: string | null;
@@ -21,7 +24,10 @@ function App() {
     {} as ProductQuery
   );
 
-  const logos = [ electric, jewelery];
+  const logos = {
+    electronics: { src:electric, alt:'electric'},
+    jewelery: { src:jewelery, alt:'jewelery'},
+  };
 
   return (
     <Grid
