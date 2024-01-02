@@ -20,7 +20,7 @@ export const CategoryList = ({ selectedCategory, onSelectCategory, logos }: Prop
     <Box paddingLeft="2rem" marginY="1.5rem">
     <Heading fontSize='2xl' marginBottom='1.5rem' >Categories</Heading>
     <List>
-      {data.map((category) => (
+      {data?.map((category) => (
         <ListItem key={category}>
           <HStack onClick={() => onSelectCategory(category)}>
             <Image cursor="pointer"  {...logos[category]} boxSize={9} />
