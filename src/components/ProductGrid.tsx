@@ -13,7 +13,7 @@ export const ProductGrid = ({ productQuery }: Props) => {
   const { data, error, isLoading } = useProducts(productQuery);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
  
   return (
       <SimpleGrid
@@ -29,7 +29,7 @@ export const ProductGrid = ({ productQuery }: Props) => {
               <ProductCardSkeleton />
             </ProductCardContainer>
           ))}
-        {data.map((product) => (
+        {data?.map((product) => (
           <ProductCardContainer key={product.id}>
             <ProductCard key={product.id} product={product} />
           </ProductCardContainer>

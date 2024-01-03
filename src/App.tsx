@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
 import { NavBar } from "./components/NavBar";
 import { ProductGrid } from "./components/ProductGrid";
 import { CategoryList } from "./components/CategoryList";
@@ -8,8 +8,6 @@ import { SortSelector } from "./components/SortSelector";
 import { ProductHeading } from "./components/ProductHeading";
 import electric from './assets/logo/electric.png'
 import jewelery from './assets/logo/jewelery.png'
-import men from './assets/logo/men.png'
-import women from './assets/logo/women.png'
 
 
 export interface ProductQuery {
