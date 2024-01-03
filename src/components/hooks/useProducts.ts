@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { InfiniteData, QueryKey, useInfiniteQuery } from "@tanstack/react-query";
 import { ProductQuery } from "../../App";
 import apiClient from "../../services/apiClient";
 
@@ -18,9 +18,9 @@ export interface Product {
 }
 
 const useProducts = (productQuery: ProductQuery) =>
-  useQuery<Product[], Error>({
+  useInfiniteQuery<Product[], Error, InfiniteData<Product[]>, QueryKey, number>({
     queryKey: ['products', productQuery],
-    queryFn: () =>
+    queryFn: ({ pageParam = 1}) =>
       apiClient
         .get<Product[]>(
           productQuery.category
@@ -29,9 +29,18 @@ const useProducts = (productQuery: ProductQuery) =>
             ? `/products/category/${productQuery.selector}`
             : productQuery.sortOrder
             ? `/products?sort=${productQuery.sortOrder}`
-            : "/products"
+            : "/products", {
+              params: {
+                _start: (pageParam - 1) * productQuery.pageSize,
+                _limit: productQuery.pageSize
+              }
+            }
         )
-        .then(res => res.data)
+        .then(res => res.data),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage.length > 0 ? allPages.length + 1 : undefined;
+        }
   });
 // useData<Product>(
 //   productQuery.category ? `/products/category/${productQuery.category}` : productQuery.selector ? `/products/category/${productQuery.selector}` : productQuery.sortOrder ? `/products?sort=${productQuery.sortOrder}` : "/products",

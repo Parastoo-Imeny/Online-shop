@@ -15,6 +15,7 @@ export interface ProductQuery {
   selector: string | null;
   sortOrder: string;
   searchText: string;
+  pageSize: 5;
 }
 
 function App() {
