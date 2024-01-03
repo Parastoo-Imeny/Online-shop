@@ -37,6 +37,7 @@ const useProducts = (productQuery: ProductQuery) =>
             }
         )
         .then(res => res.data),
+        staleTime: 24 * 60 * 60 * 1000, //24h
         initialPageParam: 1,
         getNextPageParam: (lastPage, allPages) => {
           return lastPage.length > 0 ? allPages.length + 1 : undefined;
