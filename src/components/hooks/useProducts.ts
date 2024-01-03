@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ProductQuery } from "../../App";
-import apiClient from "../../services/api-client";
+import apiClient from "../../services/apiClient";
+
 
 export interface Rating {
   rate: number;
@@ -30,7 +31,7 @@ const useProducts = (productQuery: ProductQuery) =>
             ? `/products?sort=${productQuery.sortOrder}`
             : "/products"
         )
-        .then((res) => res.data),
+        .then(res => res.data)
   });
 // useData<Product>(
 //   productQuery.category ? `/products/category/${productQuery.category}` : productQuery.selector ? `/products/category/${productQuery.selector}` : productQuery.sortOrder ? `/products?sort=${productQuery.sortOrder}` : "/products",
