@@ -1,15 +1,16 @@
 import { Box, Button, HStack, Heading, Image, ImageProps, List, ListItem, Spinner } from "@chakra-ui/react";
 import useCategories from "./hooks/useCategories";
+import useProductQueryStore from "../services/store";
 
 
 interface Props {
-  onSelectCategory: (category: string) => void;
-  selectedCategory: string | null;
   logos: {[key:string]: ImageProps};
 }
 
-export const CategoryList = ({ selectedCategory, onSelectCategory, logos }: Props) => {
+export const CategoryList = ({ logos }: Props) => {
   const { data, error, isLoading } = useCategories();
+  const setCategory = useProductQueryStore( s => s.productQuery.category)
+  const setSelectedCategory = useProductQueryStore( s => s.setSelectorCategory)
 
 
 
@@ -22,10 +23,10 @@ export const CategoryList = ({ selectedCategory, onSelectCategory, logos }: Prop
     <List>
       {data?.map((category) => (
         <ListItem key={category}>
-          <HStack onClick={() => onSelectCategory(category)}>
+          <HStack onClick={() => setSelectedCategory(category)}>
             <Image cursor="pointer"  {...logos[category]} boxSize={9} />
             <Button
-              fontWeight={category === selectedCategory ? "bold" : "normal"}
+              fontWeight={category === setCategory ? "bold" : "normal"}
               variant="Link"
               key={category}
             >

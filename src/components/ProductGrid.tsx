@@ -1,18 +1,16 @@
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { ProductQuery } from "../App";
 import { ProductCard } from "./ProductCard";
 import { ProductCardContainer } from "./ProductCardContainer";
 import { ProductCardSkeleton } from "./ProductCardSkeleton";
 import useProducts from "./hooks/useProducts";
-
-interface Props {
-  productQuery: ProductQuery;
-}
+import useProductQueryStore from "../services/store";
 
 
-export const ProductGrid = ({ productQuery }: Props) => {
+
+export const ProductGrid = () => {
+  const productQuery = useProductQueryStore(s => s.productQuery);
   const { data, error, isLoading, fetchNextPage, hasNextPage } = useProducts(productQuery);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
 

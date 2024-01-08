@@ -1,27 +1,20 @@
 import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
+import electric from './assets/logo/electric.png';
+import jewelery from './assets/logo/jewelery.png';
+import { CategoryList } from "./components/CategoryList";
+import { CategorySelector } from "./components/CategorySelector";
 import { NavBar } from "./components/NavBar";
 import { ProductGrid } from "./components/ProductGrid";
-import { CategoryList } from "./components/CategoryList";
-import { useState } from "react";
-import { CategorySelector } from "./components/CategorySelector";
-import { SortSelector } from "./components/SortSelector";
 import { ProductHeading } from "./components/ProductHeading";
-import electric from './assets/logo/electric.png'
-import jewelery from './assets/logo/jewelery.png'
+import { SortSelector } from "./components/SortSelector";
+import useProductQueryStore from "./services/store";
 
 
-export interface ProductQuery {
-  category: string | null;
-  selector: string | null;
-  sortOrder: string;
-  searchText: string;
-  pageSize: 5;
-}
 
 function App() {
-  const [productQuery, setProductQuery] = useState<ProductQuery>(
-    {} as ProductQuery
-  );
+
+  const setSelectorCategory = useProductQueryStore(s => s.setSelectorCategory);
+  const setSortOrder = useProductQueryStore(s => s.setSortOrder);
 
   const logos = {
     electronics: { src:electric, alt:'electric'},
@@ -36,44 +29,34 @@ function App() {
       }}
     >
       <GridItem area={"nav"}>
-        <NavBar
-          onSearch={(searchText) =>
-            setProductQuery({ ...productQuery, searchText })
-          }
-        />
+        <NavBar />
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"}>
           <CategoryList
             logos={logos}
-            selectedCategory={productQuery.category}
-            onSelectCategory={(category) =>
-              setProductQuery({ ...productQuery, category: category })
-            }
           />
         </GridItem>
       </Show>
       <GridItem area={"main"}>
         <Box padding={4}>
-          <ProductHeading productQuery={productQuery} />
+          <ProductHeading />
           <Flex marginBottom={5}>
             <Box marginRight={5}>
               <CategorySelector
-                categorySelector={productQuery.selector}
                 onSelect={(category) =>
-                  setProductQuery({ ...productQuery, selector: category })
+                  setSelectorCategory(category)
                 }
               />
             </Box>
             <SortSelector
-              sortSelector={productQuery.sortOrder}
               onSelectSortOrder={(sortOrder) =>
-                setProductQuery({ ...productQuery, sortOrder })
+                setSortOrder(sortOrder)
               }
             />
           </Flex>
         </Box>
-        <ProductGrid productQuery={productQuery} />
+        <ProductGrid />
       </GridItem>
     </Grid>
   );

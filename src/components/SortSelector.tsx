@@ -1,18 +1,19 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
+import useProductQueryStore from "../services/store";
 
 interface Props {
     onSelectSortOrder: (sortOrder: string) => void;
-    sortSelector: string;
 }
 
-export const SortSelector = ({ onSelectSortOrder, sortSelector }: Props) => {
+export const SortSelector = ({ onSelectSortOrder }: Props) => {
+  const productQuery = useProductQueryStore(s => s.productQuery);
   const sortOrder = [
     { value: "desc", label: "Price" },
     { value: "asc", label: "Rating" },
   ];
 
-  const currentSortOrder= sortOrder.find(order => order.value === sortSelector);
+  const currentSortOrder= sortOrder.find(order => order.value === productQuery.sortOrder);
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>

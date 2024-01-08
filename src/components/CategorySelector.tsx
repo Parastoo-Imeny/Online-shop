@@ -1,20 +1,21 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import useCategories from "./hooks/useCategories";
 import {BsChevronDown} from 'react-icons/bs';
+import useProductQueryStore from "../services/store";
 
 interface Props {
   onSelect: (category: string) => void;
-  categorySelector: string | null
 }
 
-export const CategorySelector = ({ onSelect, categorySelector }: Props) => {
+export const CategorySelector = ({ onSelect }: Props) => {
   const { data, error } = useCategories();
+  const productQuery = useProductQueryStore(s => s.productQuery);
 
   if (error) return null;
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {categorySelector || 'Category'}
+        {productQuery.selector || 'Category'}
       </MenuButton>
       <MenuList>
         {data.map((category) => (
