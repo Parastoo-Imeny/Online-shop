@@ -29,7 +29,7 @@ export const ProductCard = ({ product }: Props) => {
         <Heading size="3rem">
           <Link to={"/products/" + product.id}>{product.title}</Link>
         </Heading>
-        <Text>
+        {/* <Text>
           {setup
             ? product.description
             : product.description.slice(0, 20) + "..."}
@@ -41,7 +41,7 @@ export const ProductCard = ({ product }: Props) => {
           >
             {setup ? "Less" : "More"}
           </Button>
-        </Text>
+        </Text> */}
         <HStack display="flex" justifyContent="space-between" marginY={6}>
           <Text>${product.price}</Text>
           <CriticScore rating={product.rating} />
