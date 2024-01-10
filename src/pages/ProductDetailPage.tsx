@@ -1,6 +1,7 @@
 import { Heading, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ExpandableText from "../components/ExpandableText";
+import ProductAttributes from "../components/ProductAttributes";
 import useProduct from "../components/hooks/useProduct";
 
 const ProductDetailPage = () => {
@@ -15,6 +16,7 @@ const ProductDetailPage = () => {
     <>
       <Heading size="3rem">{product?.title}</Heading>
       <ExpandableText>{product?.description!}</ExpandableText>
+      <ProductAttributes product={product!} />
     </>
   );
 };
