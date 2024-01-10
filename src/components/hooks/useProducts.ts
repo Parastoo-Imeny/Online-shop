@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import apiClient from "../../services/apiClient";
 import { ProductQuery } from "../../services/store";
-import { Product } from "../../entities/Product";
+import Product from "../../entities/Product";
 
 export interface Rating {
   rate: number;

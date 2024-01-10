@@ -4,11 +4,9 @@ import {
   Text,
   Heading,
   Img,
-  Button,
   HStack,
 } from "@chakra-ui/react";
-import { Product } from "../entities/Product";
-import { useState } from "react";
+import Product from "../entities/Product";
 import { CriticScore } from "./CriticScore";
 import { Link } from "react-router-dom";
 
@@ -17,7 +15,7 @@ interface Props {
 }
 
 export const ProductCard = ({ product }: Props) => {
-  const [setup, isSetup] = useState(false);
+  // const [setup, isSetup] = useState(false);
   return (
     <Card
       boxShadow="3px 3px 3px 3px rgba(0, 0, 0, 0.1),1px 1px 2px 2px rgba(0, 0, 0, 0.06)"
