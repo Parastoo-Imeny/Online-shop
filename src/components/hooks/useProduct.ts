@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { Product } from "./useProducts";
+import { Product } from "../../entities/Product";
 import APIClient from "../../services/api-client";
 
-const apiClient = new APIClient<Product>('products');
+const apiClient = new APIClient<Product>("products");
 
-const useProduct = (id: number) => useQuery<Product, Error>({
-    queryKey: ['products', id],
-    queryFn: () => apiClient.get(id)
-})
+const useProduct = (id: number) =>
+  useQuery<Product, Error>({
+    queryKey: ["products", id],
+    queryFn: () => apiClient.get(id),
+  });
 
 export default useProduct;
