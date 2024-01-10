@@ -1,6 +1,6 @@
 import { InfiniteData, QueryKey, useInfiniteQuery } from "@tanstack/react-query";
-import { ProductQuery } from "../../App";
 import apiClient from "../../services/apiClient";
+import { ProductQuery } from "../../services/store";
 
 
 export interface Rating {
@@ -31,7 +31,7 @@ const useProducts = (productQuery: ProductQuery) =>
             ? `/products?sort=${productQuery.sortOrder}`
             : "/products", {
               params: {
-                _start: (pageParam - 1) * productQuery.pageSize,
+                _start: (pageParam - 1) * (productQuery.pageSize!),
                 _limit: productQuery.pageSize
               }
             }

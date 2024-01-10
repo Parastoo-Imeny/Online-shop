@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-interface ProductQuery {
+export interface ProductQuery {
   category?: string | null;
   selector?: string | null;
   sortOrder?: string;

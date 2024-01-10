@@ -10,6 +10,7 @@ import {
 import { Product } from "./hooks/useProducts";
 import { useState } from "react";
 import { CriticScore } from "./CriticScore";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product;
@@ -21,7 +22,9 @@ export const ProductCard = ({ product }: Props) => {
     <Card boxShadow="3px 3px 3px 3px rgba(0, 0, 0, 0.1),1px 1px 2px 2px rgba(0, 0, 0, 0.06)" display="flex" align="center">
       <Img src={product.image} borderRadius="6px" />
       <CardBody>
-        <Heading size="3rem">{product.title}</Heading>
+        <Heading size="3rem">
+          <Link to={'/products/' + product.id}>{product.title}</Link>
+          </Heading>
         <Text>
           {setup
             ? product.description

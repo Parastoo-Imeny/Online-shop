@@ -38,8 +38,8 @@ export const ProductGrid = () => {
               <ProductCardSkeleton />
             </ProductCardContainer>
           ))}
-        {data?.pages.map((page) => (
-          <React.Fragment>
+        {data?.pages.map((page, index) => (
+          <React.Fragment key={index}>
             {page.map((product) => (
               <ProductCardContainer key={product.id}>
                 <ProductCard key={product.id} product={product} />
