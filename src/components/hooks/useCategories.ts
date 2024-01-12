@@ -4,7 +4,7 @@ import categories from "../../data/categories";
 
 const apiClient = new APIClient<string>('/products/categories');
 
-const useCategories = () => useQuery({
+const useCategories = () => useQuery<string[]>({
     queryKey: ['categories'],
     queryFn: apiClient.getAll,
     staleTime: 24 * 60 * 60 * 1000, //24h 
